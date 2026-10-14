@@ -1,125 +1,151 @@
 [
   {
-    "category": "Programming",
-    "icon": "code",
+    "category": "AI-Assisted Development",
+    "icon": "sparkles",
     "items": [
       {
-        "name": "JavaScript",
-        "proficiency": ""
+        "name": "AI-Assisted Software Development (Vibe Coding)"
       },
       {
-        "name": "Python",
-        "proficiency": ""
+        "name": "Prompt Engineering"
       },
       {
-        "name": "Java",
-        "proficiency": ""
+        "name": "AI-Assisted Prototyping"
       },
       {
-        "name": "Kotlin",
-        "proficiency": ""
+        "name": "Iterative Prompt Refinement"
       },
       {
-        "name": "SQL",
-        "proficiency": ""
-      },
-      {
-        "name": "HTML",
-        "proficiency": ""
-      },
-      {
-        "name": "CSS",
-        "proficiency": ""
+        "name": "AI-Guided Implementation"
       }
     ]
   },
   {
-    "category": "Frameworks & Platforms",
+    "category": "Systems & Planning",
     "icon": "layers",
     "items": [
       {
-        "name": "React",
-        "proficiency": ""
+        "name": "System Conceptualization"
       },
       {
-        "name": "Vite",
-        "proficiency": ""
+        "name": "Requirements Analysis"
       },
       {
-        "name": "Express",
-        "proficiency": ""
+        "name": "Application Workflow Design"
       },
       {
-        "name": "Capacitor",
-        "proficiency": ""
+        "name": "Feature Planning"
       },
       {
-        "name": "Android",
-        "proficiency": ""
+        "name": "System Integration Fundamentals"
       },
       {
-        "name": "Supabase",
-        "proficiency": ""
+        "name": "Problem Analysis"
       }
     ]
   },
   {
-    "category": "Tools & Workflow",
+    "category": "Development Workflow",
     "icon": "terminal",
     "items": [
       {
-        "name": "Git & GitHub",
-        "proficiency": ""
+        "name": "Iterative Development"
       },
       {
-        "name": "Android Studio",
-        "proficiency": ""
+        "name": "Functional Testing"
       },
       {
-        "name": "VS Code",
-        "proficiency": ""
+        "name": "AI-Assisted Debugging"
       },
       {
-        "name": "SQLite",
-        "proficiency": ""
+        "name": "Software Troubleshooting"
       },
       {
-        "name": "PostgreSQL",
-        "proficiency": ""
+        "name": "Development Documentation"
       },
       {
-        "name": "3ds Max",
-        "proficiency": ""
+        "name": "Git & GitHub Workflows"
       }
     ]
   },
   {
-    "category": "Design & People",
+    "category": "Technologies & Tools",
+    "icon": "code",
+    "items": [
+      {
+        "name": "HTML & CSS"
+      },
+      {
+        "name": "JavaScript"
+      },
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Java"
+      },
+      {
+        "name": "Kotlin"
+      },
+      {
+        "name": "SQL"
+      },
+      {
+        "name": "React"
+      },
+      {
+        "name": "Vite"
+      },
+      {
+        "name": "Express"
+      },
+      {
+        "name": "Capacitor"
+      },
+      {
+        "name": "Android"
+      },
+      {
+        "name": "Supabase"
+      },
+      {
+        "name": "Android Studio"
+      },
+      {
+        "name": "VS Code"
+      },
+      {
+        "name": "SQLite"
+      },
+      {
+        "name": "PostgreSQL"
+      },
+      {
+        "name": "3ds Max"
+      }
+    ]
+  },
+  {
+    "category": "Design & Collaboration",
     "icon": "pen",
     "items": [
       {
-        "name": "Responsive UI",
-        "proficiency": ""
+        "name": "UI/UX Planning"
       },
       {
-        "name": "UX Thinking",
-        "proficiency": ""
+        "name": "Responsive Interface Design"
       },
       {
-        "name": "Prototyping",
-        "proficiency": ""
+        "name": "User-Centered Design"
       },
       {
-        "name": "Collaboration",
-        "proficiency": ""
+        "name": "Rapid Prototyping"
       },
       {
-        "name": "Problem Solving",
-        "proficiency": ""
+        "name": "Creative Problem-Solving"
       },
       {
-        "name": "Communication",
-        "proficiency": ""
+        "name": "Collaboration & Communication"
       }
     ]
   }

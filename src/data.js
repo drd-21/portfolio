@@ -3,9 +3,9 @@ export const portfolio = {
   "site": {
     "name": "Eduard Abraham Z. Orcullo",
     "initials": "EAO",
-    "role": "BSIT Student & Web / Mobile Developer",
+    "role": "BSIT Student | AI-Assisted Software Developer",
     "intro": "I turn real-world challenges into thoughtful digital experiences.",
-    "tagline": "Building useful things, with purpose and personality.",
+    "tagline": "System Conceptualization • AI-Assisted Development • Web & Mobile Applications",
     "availability": "Open to internships & collaborations",
     "city": "Daet, Camarines Norte",
     "country": "Philippines",
@@ -115,9 +115,99 @@ export const portfolio = {
   ],
   "skills": [
     {
-      "category": "Programming",
+      "category": "AI-Assisted Development",
+      "icon": "sparkles",
+      "items": [
+        {
+          "name": "AI-Assisted Software Development (Vibe Coding)",
+          "proficiency": ""
+        },
+        {
+          "name": "Prompt Engineering",
+          "proficiency": ""
+        },
+        {
+          "name": "AI-Assisted Prototyping",
+          "proficiency": ""
+        },
+        {
+          "name": "Iterative Prompt Refinement",
+          "proficiency": ""
+        },
+        {
+          "name": "AI-Guided Implementation",
+          "proficiency": ""
+        }
+      ]
+    },
+    {
+      "category": "Systems & Planning",
+      "icon": "layers",
+      "items": [
+        {
+          "name": "System Conceptualization",
+          "proficiency": ""
+        },
+        {
+          "name": "Requirements Analysis",
+          "proficiency": ""
+        },
+        {
+          "name": "Application Workflow Design",
+          "proficiency": ""
+        },
+        {
+          "name": "Feature Planning",
+          "proficiency": ""
+        },
+        {
+          "name": "System Integration Fundamentals",
+          "proficiency": ""
+        },
+        {
+          "name": "Problem Analysis",
+          "proficiency": ""
+        }
+      ]
+    },
+    {
+      "category": "Development Workflow",
+      "icon": "terminal",
+      "items": [
+        {
+          "name": "Iterative Development",
+          "proficiency": ""
+        },
+        {
+          "name": "Functional Testing",
+          "proficiency": ""
+        },
+        {
+          "name": "AI-Assisted Debugging",
+          "proficiency": ""
+        },
+        {
+          "name": "Software Troubleshooting",
+          "proficiency": ""
+        },
+        {
+          "name": "Development Documentation",
+          "proficiency": ""
+        },
+        {
+          "name": "Git & GitHub Workflows",
+          "proficiency": ""
+        }
+      ]
+    },
+    {
+      "category": "Technologies & Tools",
       "icon": "code",
       "items": [
+        {
+          "name": "HTML & CSS",
+          "proficiency": ""
+        },
         {
           "name": "JavaScript",
           "proficiency": ""
@@ -138,20 +228,6 @@ export const portfolio = {
           "name": "SQL",
           "proficiency": ""
         },
-        {
-          "name": "HTML",
-          "proficiency": ""
-        },
-        {
-          "name": "CSS",
-          "proficiency": ""
-        }
-      ]
-    },
-    {
-      "category": "Frameworks & Platforms",
-      "icon": "layers",
-      "items": [
         {
           "name": "React",
           "proficiency": ""
@@ -174,16 +250,6 @@ export const portfolio = {
         },
         {
           "name": "Supabase",
-          "proficiency": ""
-        }
-      ]
-    },
-    {
-      "category": "Tools & Workflow",
-      "icon": "terminal",
-      "items": [
-        {
-          "name": "Git & GitHub",
           "proficiency": ""
         },
         {
@@ -209,31 +275,31 @@ export const portfolio = {
       ]
     },
     {
-      "category": "Design & People",
+      "category": "Design & Collaboration",
       "icon": "pen",
       "items": [
         {
-          "name": "Responsive UI",
+          "name": "UI/UX Planning",
           "proficiency": ""
         },
         {
-          "name": "UX Thinking",
+          "name": "Responsive Interface Design",
           "proficiency": ""
         },
         {
-          "name": "Prototyping",
+          "name": "User-Centered Design",
           "proficiency": ""
         },
         {
-          "name": "Collaboration",
+          "name": "Rapid Prototyping",
           "proficiency": ""
         },
         {
-          "name": "Problem Solving",
+          "name": "Creative Problem-Solving",
           "proficiency": ""
         },
         {
-          "name": "Communication",
+          "name": "Collaboration & Communication",
           "proficiency": ""
         }
       ]

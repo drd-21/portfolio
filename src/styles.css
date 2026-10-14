@@ -116,6 +116,7 @@ svg { flex: none; }
 .gradient-word { color: var(--accent); }
 .hero-period { color: var(--ink); }
 .hero-role { margin: 28px 0 0; font-size: 14px; font-weight: 790; text-transform: uppercase; letter-spacing: 1.6px; color: var(--cool); }
+.hero-tagline { margin: 9px 0 0; color: var(--ink-muted); font-size: 11px; line-height: 1.7; }
 .hero-description { color: var(--ink-muted); margin: 14px 0 0; max-width: 555px; font-size: 16px; line-height: 1.9; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 .hero-meta { display: flex; gap: 18px; align-items: center; color: var(--ink-muted); font-size: 12px; margin-top: 46px; }
@@ -191,7 +192,7 @@ svg { flex: none; }
 .experience-arrow { color: var(--ink-muted); margin-top: 6px; }
 
 /* Skills */
-.skills-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .skill-card { min-height: 280px; background: var(--surface); border: 1px solid var(--line); border-radius: 15px; padding: 27px 24px 27px; transition: transform .22s, border-color .22s; }
 .skill-card:hover { transform: translateY(-5px); border-color: rgba(198,242,123,.45); }
 .skill-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 36px; }

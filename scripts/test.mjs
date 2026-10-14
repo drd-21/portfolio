@@ -13,6 +13,20 @@ assert.equal(new Set(ids).size, ids.length, 'Project IDs must be unique.');
 assert.deepEqual(ids, ['attendease', 'blooming-memories', 'sari-sari-pos', 'smart-menu'], 'CMS migration must preserve the existing published projects and order.');
 assert.equal(portfolio.contact.formspreeId, 'mvkzwlda', 'The existing Formspree form ID must be preserved.');
 assert.ok(portfolio.skills[0].items.every((skill) => typeof skill.name === 'string'), 'CMS skills should be generated as structured skill records.');
+assert.deepEqual(portfolio.skills.map(({ category, icon }) => [category, icon]), [
+  ['AI-Assisted Development', 'sparkles'],
+  ['Systems & Planning', 'layers'],
+  ['Development Workflow', 'terminal'],
+  ['Technologies & Tools', 'code'],
+  ['Design & Collaboration', 'pen'],
+], 'Skills should use the requested CMS-editable categories in order.');
+assert.deepEqual(portfolio.skills[0].items.map(({ name }) => name), [
+  'AI-Assisted Software Development (Vibe Coding)',
+  'Prompt Engineering',
+  'AI-Assisted Prototyping',
+  'Iterative Prompt Refinement',
+  'AI-Guided Implementation',
+], 'AI-assisted development should be the first skill group.');
 for (const relative of [site.photo, site.resumePath, site.cvPath, site.ogImage, ...projects.map((p) => p.image)]) {
   assert.ok(relative.startsWith('./assets/'), `Unexpected asset location: ${relative}`);
   const file = path.join(dist, relative.replace(/^\.\//, ''));

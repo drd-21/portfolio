@@ -82,6 +82,7 @@ app.innerHTML = `
           <p class="hero-overline reveal">Hello there <span aria-hidden="true">✳</span> I’m ${e(site.name)}</p>
           <h1 id="hero-title" class="reveal">Building digital<br/><span class="italic-word">experiences</span> that<br/><span class="gradient-word">feel human<span class="hero-period">.</span></span></h1>
           <p class="hero-role reveal">${e(site.role)}</p>
+          <p class="hero-tagline reveal">${e(site.tagline)}</p>
           <p class="hero-description reveal">${e(site.intro)} ${e(site.description)}</p>
           <div class="hero-actions reveal">
             <a class="button button-primary" href="#projects">View Projects ${icon('arrowUpRight', 18)}</a>
@@ -139,9 +140,9 @@ app.innerHTML = `
 
     <section class="section shaded-section" id="skills" aria-labelledby="skills-title">
       <div class="container">
-        ${sectionHeading('04', 'Toolkit', 'Tools of the trade.', 'Technologies and ways of thinking I use to bring ideas to life.')}
+        ${sectionHeading('04', 'Toolkit', 'Where Ideas Meet Implementation.', 'My approach combines system conceptualization, thoughtful planning, and AI-assisted development. I focus on transforming ideas into functional digital solutions while continuously strengthening my technical understanding and problem-solving abilities.')}
         <div class="skills-grid">${skills.map((group, index) => `<article class="skill-card reveal"><div class="skill-card-top"><span class="skill-icon">${icon(group.icon, 25)}</span><span class="skill-number">0${index + 1}</span></div><h3>${e(group.category)}</h3><div class="skill-tags">${group.items.map((item) => `<span${item.proficiency ? ` title="${attr(item.proficiency)}"` : ''}>${e(item.name)}</span>`).join('')}</div></article>`).join('')}</div>
-        <p class="skills-note reveal">My toolkit continues to grow with every project. These are technologies I have worked with or explored—not claims of expert proficiency.</p>
+        <p class="skills-note reveal">I use AI as a development partner to accelerate implementation, while focusing on requirements, application workflows, iterative improvement, and functionality.</p>
       </div>
     </section>
 
