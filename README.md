@@ -25,7 +25,7 @@ Open **http://127.0.0.1:3000**. Don't double-click `index.html` using `file://`,
 
 ## Mobile navigation and browsing
 
-On narrow screens, the compact hero is followed by an **Explore my portfolio** dashboard. A fixed bottom navigation for Projects, Skills, Resume and Contact appears after visitors scroll past that opening dashboard; this keeps the first screen clear while keeping navigation nearby during longer browsing. The header menu still links to every section. The bottom dock hides while a contact form field is focused so it cannot obstruct the on-screen keyboard.
+On phone screens (740px and narrower), the compact hero is followed by an **Explore my portfolio** dashboard with quick links and a **More sections** entry point. After visitors scroll past that dashboard, a fixed five-destination dock links to Projects, Skills, Resume, Contact, and **More**. More opens a keyboard-accessible bottom sheet for About Me, Education, Experience, Certifications, and Back to Top. The phone header keeps only the portfolio branding and theme toggle. Tablet widths retain the hamburger menu, and the dock hides while a contact form field is focused so it cannot obstruct the on-screen keyboard.
 
 Skills, education, experience, the on-page CV, and secondary About details use native expandable disclosures. On phones these start compact (with the first skill category open); on wider screens their information is expanded by default. Project cards can be browsed horizontally, filtered by category, or expanded into a complete grid using **View all projects**. Selecting a project opens the accessible detail dialog.
 

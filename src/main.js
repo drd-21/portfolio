@@ -113,6 +113,7 @@ app.innerHTML = `
           <a class="quick-explore-card" href="#skills">${icon('layers', 21)}<span><strong>Skills</strong><small>What I work with</small></span>${icon('arrowUpRight', 17)}</a>
           <a class="quick-explore-card" href="#education">${icon('book', 21)}<span><strong>Background</strong><small>My journey</small></span>${icon('arrowUpRight', 17)}</a>
           <a class="quick-explore-card" href="#contact">${icon('mail', 21)}<span><strong>Contact</strong><small>Let’s connect</small></span>${icon('arrowUpRight', 17)}</a>
+          <button class="quick-explore-card quick-explore-more" type="button" data-open-more aria-haspopup="dialog" aria-controls="more-dialog" aria-expanded="false">${icon('menu', 21)}<span><strong>More sections</strong><small>Education, experience &amp; more</small></span>${icon('arrowUpRight', 17)}</button>
         </nav>
       </div>
     </section>
@@ -248,10 +249,21 @@ app.innerHTML = `
     <a class="dock-link nav-link" href="#skills" data-section="skills">${icon('layers', 19)}<span>Skills</span></a>
     <a class="dock-link nav-link" href="#resume" data-section="resume">${icon('document', 19)}<span>Resume</span></a>
     <a class="dock-link nav-link" href="#contact" data-section="contact">${icon('mail', 19)}<span>Contact</span></a>
+    <button class="dock-link nav-link" type="button" data-open-more data-sections="about,education,experience,certifications" aria-haspopup="dialog" aria-controls="more-dialog" aria-expanded="false">${icon('menu', 19)}<span>More</span></button>
   </nav>
 
   <footer class="footer"><div class="container"><div class="footer-top"><div><a class="footer-logo" href="#main">${e(site.initials)}<span>.</span></a><p>${e(site.tagline)}</p></div><div class="footer-right"><p>Let's stay connected.</p>${socialLinks('footer-social')}</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${e(site.name)}. All rights reserved.</span><div><a href="#about">About</a><a href="#projects">Work</a><a href="#contact">Contact</a></div><a href="#main" class="back-to-top">Back to top ${icon('arrowUp', 16)}</a></div></div></footer>
 
+  <dialog id="more-dialog" class="more-dialog" aria-modal="true" aria-labelledby="more-dialog-title" aria-describedby="more-dialog-description">
+    <div class="more-dialog-head"><div><p class="eyebrow"><span class="eyebrow-bar"></span>Explore</p><h2 id="more-dialog-title">More to discover</h2><p id="more-dialog-description">Explore the people, experience, and milestones behind my work.</p></div><button type="button" class="more-dialog-close" data-close-more aria-label="Close more sections">${icon('x', 21)}</button></div>
+    <nav class="more-dialog-links" aria-label="More portfolio sections">
+      <a class="nav-link" href="#about" data-more-link data-section="about">${icon('sparkles', 19)}<span><strong>About Me</strong><small>A little more about who I am</small></span>${icon('arrowUpRight', 17)}</a>
+      <a class="nav-link" href="#education" data-more-link data-section="education">${icon('book', 19)}<span><strong>Education</strong><small>My academic background</small></span>${icon('arrowUpRight', 17)}</a>
+      <a class="nav-link" href="#experience" data-more-link data-section="experience">${icon('layers', 19)}<span><strong>Experience</strong><small>Projects and practical experience</small></span>${icon('arrowUpRight', 17)}</a>
+      <a class="nav-link" href="#certifications" data-more-link data-section="certifications">${icon('document', 19)}<span><strong>Certifications</strong><small>Credentials and continued learning</small></span>${icon('arrowUpRight', 17)}</a>
+      <a class="nav-link" href="#top" data-more-link>${icon('arrowUp', 19)}<span><strong>Back to Top</strong><small>Return to the beginning</small></span>${icon('arrowUpRight', 17)}</a>
+    </nav>
+  </dialog>
   <dialog id="project-dialog" class="project-dialog" aria-labelledby="modal-title"><button type="button" class="modal-close modal-close-fixed" data-close-dialog aria-label="Close project details">${icon('x', 23)}</button><div id="project-dialog-body"></div></dialog>
 `;
 
@@ -322,14 +334,36 @@ function syncMobileDock() {
   document.body.classList.toggle('dock-active', visible);
   mobileDock.hidden = !visible || document.body.classList.contains('form-is-focused');
 }
+const navTargets = [...document.querySelectorAll('main section[id]')];
+function updateActiveSection(id) {
+  document.querySelectorAll('.nav-link').forEach((link) => {
+    const active = link.dataset.section === id || Boolean(link.dataset.sections?.split(',').includes(id));
+    link.classList.toggle('is-active', active);
+    if (active) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+}
+function syncActiveSection() {
+  const activationPoint = document.querySelector('.site-header').offsetHeight + Math.min(window.innerHeight * 0.25, 160);
+  let activeId = '';
+  for (const section of navTargets) {
+    if (section.getBoundingClientRect().top > activationPoint) break;
+    activeId = section.id;
+  }
+  updateActiveSection(activeId);
+}
+function syncMobileNavigation() {
+  syncMobileDock();
+  syncActiveSection();
+}
 window.addEventListener('scroll', () => {
   if (!dockFrame) dockFrame = requestAnimationFrame(() => {
     dockFrame = 0;
-    syncMobileDock();
+    syncMobileNavigation();
   });
 }, { passive: true });
-window.addEventListener('resize', syncMobileDock);
-syncMobileDock();
+window.addEventListener('resize', syncMobileNavigation);
+syncMobileNavigation();
 
 // Mobile menu and escape / resize handling.
 const menuToggle = document.querySelector('#menu-toggle');
@@ -341,6 +375,7 @@ function closeMenu() {
   document.body.classList.remove('menu-is-open');
 }
 menuToggle.addEventListener('click', () => {
+  if (window.innerWidth <= 740) return;
   const willOpen = menuToggle.getAttribute('aria-expanded') !== 'true';
   menuToggle.setAttribute('aria-expanded', String(willOpen));
   menuToggle.setAttribute('aria-label', willOpen ? 'Close navigation' : 'Open navigation');
@@ -348,31 +383,18 @@ menuToggle.addEventListener('click', () => {
   document.body.classList.toggle('menu-is-open', willOpen);
 });
 mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
-window.addEventListener('resize', () => { if (window.innerWidth > 980) closeMenu(); });
+window.addEventListener('resize', () => { if (window.innerWidth <= 740 || window.innerWidth > 980) closeMenu(); });
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
-    closeMenu();
-    const projectDialog = document.querySelector('#project-dialog');
-    if (projectDialog?.open) projectDialog.close();
+  if (event.key !== 'Escape') return;
+  if (moreDialog.open) {
+    event.preventDefault();
+    closeMoreDialog();
+  } else if (dialog.open) {
+    event.preventDefault();
+    dialog.close();
   }
+  closeMenu();
 });
-
-// Active section tracking for all navigation links.
-const navTargets = document.querySelectorAll('main section[id]');
-function updateActiveSection(id) {
-  document.querySelectorAll('.nav-link').forEach((link) => {
-    const active = link.dataset.section === id;
-    link.classList.toggle('is-active', active);
-    if (active) link.setAttribute('aria-current', 'location');
-    else link.removeAttribute('aria-current');
-  });
-}
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => { if (entry.isIntersecting) updateActiveSection(entry.target.id); });
-  }, { rootMargin: '-25% 0px -60% 0px', threshold: 0 });
-  navTargets.forEach((section) => observer.observe(section));
-}
 
 // Keep the mobile dock out of the way while the on-screen keyboard is active.
 const contactForm = document.querySelector('#contact-form');
@@ -430,12 +452,59 @@ projectViewAll?.addEventListener('click', () => {
 // Native dialog gives keyboard focus management and Escape-to-close for free.
 const dialog = document.querySelector('#project-dialog');
 const dialogBody = document.querySelector('#project-dialog-body');
+const moreDialog = document.querySelector('#more-dialog');
+const moreTriggers = [...document.querySelectorAll('[data-open-more]')];
 let currentProject = null;
 let projectTrigger = null;
+let moreTrigger = null;
+function openMoreDialog(trigger) {
+  if (moreDialog.open || dialog.open) return;
+  if (!mobileNav.hidden) closeMenu();
+  if (document.activeElement instanceof HTMLElement && document.activeElement.matches('input:not([type="hidden"]), textarea')) {
+    document.activeElement.blur();
+  }
+  moreTrigger = trigger;
+  moreTriggers.forEach((item) => item.setAttribute('aria-expanded', String(item === trigger)));
+  moreDialog.showModal();
+  moreDialog.querySelector('[data-more-link]').focus({ preventScroll: true });
+}
+function closeMoreDialog(returnValue = '') {
+  if (moreDialog.open) moreDialog.close(returnValue);
+}
+moreTriggers.forEach((trigger) => trigger.addEventListener('click', () => openMoreDialog(trigger)));
+moreDialog.querySelector('[data-close-more]').addEventListener('click', () => closeMoreDialog());
+moreDialog.addEventListener('click', (event) => {
+  if (event.target === moreDialog) closeMoreDialog();
+});
+moreDialog.addEventListener('close', (event) => {
+  moreTriggers.forEach((trigger) => trigger.setAttribute('aria-expanded', 'false'));
+  if (event.target.returnValue !== 'navigate' && moreTrigger?.isConnected) moreTrigger.focus({ preventScroll: true });
+});
+moreDialog.querySelectorAll('[data-more-link]').forEach((link) => link.addEventListener('click', (event) => {
+  event.preventDefault();
+  const href = link.getAttribute('href');
+  const target = document.querySelector(href === '#top' ? '#main' : href);
+  if (!target) return;
+  closeMoreDialog('navigate');
+  history.pushState(null, '', href);
+  updateActiveSection(link.dataset.section || '');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (href === '#top') {
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    document.querySelector('.brand').focus({ preventScroll: true });
+    return;
+  }
+  target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+  const focusTarget = target.querySelector('h1, h2') || target;
+  focusTarget.setAttribute('tabindex', '-1');
+  focusTarget.addEventListener('blur', () => focusTarget.removeAttribute('tabindex'), { once: true });
+  focusTarget.focus({ preventScroll: true });
+}));
 const renderProjectList = (heading, items) => items?.length
   ? `<h3>${e(heading)}</h3><ul class="modal-contributions">${items.map((item) => `<li>${icon('check', 17)} ${e(item)}</li>`).join('')}</ul>`
   : '';
 function openProject(id, updateUrl = true) {
+  if (moreDialog.open) closeMoreDialog();
   const project = projects.find((item) => item.id === id);
   if (!project) return;
   currentProject = id;
