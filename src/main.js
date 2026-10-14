@@ -356,6 +356,7 @@ function syncMobileNavigation() {
   syncMobileDock();
   syncActiveSection();
 }
+window.addEventListener('hashchange', () => requestAnimationFrame(syncActiveSection));
 window.addEventListener('scroll', () => {
   if (!dockFrame) dockFrame = requestAnimationFrame(() => {
     dockFrame = 0;
