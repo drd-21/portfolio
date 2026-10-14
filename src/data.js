@@ -22,7 +22,7 @@ export const portfolio = {
     photoAlt: 'Stylized placeholder portrait — replace with a photo of yourself',
     resumePath: './assets/resume.pdf',
     cvPath: './assets/cv.pdf',
-    websiteUrl: 'https://yourdomain.com', // CHANGE ME for sitemap / canonical / OG tags
+    websiteUrl: 'https://drd-21.github.io/portfolio/', // Production URL for sitemap / canonical / OG tags
     ogImage: './assets/og-image.png',
     // CHANGE ME: replace with verified URLs; blank links are hidden.
     socials: [
