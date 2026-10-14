@@ -539,6 +539,7 @@ window.addEventListener('popstate', () => {
   const id = new URL(window.location.href).searchParams.get('project');
   if (id) openProject(id, false);
   else if (dialog.open) dialog.close();
+  requestAnimationFrame(syncActiveSection);
 });
 const initialProject = new URL(window.location.href).searchParams.get('project');
 if (initialProject) openProject(initialProject, false);
