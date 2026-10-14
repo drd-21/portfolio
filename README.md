@@ -1,6 +1,6 @@
 # Personal portfolio — editable, fast, deployable
 
-A polished **dark/light personal portfolio** with an accessible native project-detail dialog, mobile navigation, project category filters, smooth scrolling, reveal effects, all requested content sections, a generated on-page CV, embedded PDF previews, a configured Formspree contact form, and Pages CMS editing.
+A polished **dark/light personal portfolio** with an accessible native project-detail dialog, mobile quick navigation, expandable skills/education/experience, a swipeable project collection with a full-grid option, smooth scrolling, reveal effects, all requested content sections, a generated on-page CV, desktop PDF previews, a configured Formspree contact form, and Pages CMS editing.
 
 **Selected technology:** plain HTML, CSS and modern JavaScript (ES modules). No frameworks, dependencies, database, bundler or package install are necessary. This was an allowed option in the original brief and makes the site easy to inspect, maintain and host.
 
@@ -22,6 +22,14 @@ npm.cmd run dev
 Use the same `npm.cmd` prefix for the other npm commands below when running them in PowerShell (for example, `npm.cmd run build`). This avoids changing your PowerShell execution policy.
 
 Open **http://127.0.0.1:3000**. Don't double-click `index.html` using `file://`, because browsers usually block ES module imports across `file://` URLs.
+
+## Mobile navigation and browsing
+
+On narrow screens, the compact hero is followed by an **Explore my portfolio** dashboard. A fixed bottom navigation for Projects, Skills, Resume and Contact appears after visitors scroll past that opening dashboard; this keeps the first screen clear while keeping navigation nearby during longer browsing. The header menu still links to every section. The bottom dock hides while a contact form field is focused so it cannot obstruct the on-screen keyboard.
+
+Skills, education, experience, the on-page CV, and secondary About details use native expandable disclosures. On phones these start compact (with the first skill category open); on wider screens their information is expanded by default. Project cards can be browsed horizontally, filtered by category, or expanded into a complete grid using **View all projects**. Selecting a project opens the accessible detail dialog.
+
+Mobile Resume and CV actions open the PDFs in a new tab or download them; the embedded PDF viewer is reserved for larger screens. No document is embedded on mobile until a visitor explicitly chooses a view/download action.
 
 Alternative local server if you do not want Node:
 

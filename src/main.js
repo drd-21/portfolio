@@ -62,7 +62,7 @@ const emailHref = `mailto:${encodeURIComponent(site.email)}`;
 app.innerHTML = `
   <header class="site-header" id="top">
     <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="${attr(site.name)} — back to top"><span class="brand-mark">${e(site.initials)}<span>.</span></span><span class="brand-caption">portfolio<span class="brand-year"> / ${new Date().getFullYear()}</span></span></a>
+      <a class="brand" href="#main" aria-label="${attr(site.name)} — back to top"><span class="brand-mark">${e(site.initials)}<span>.</span></span><span class="brand-caption">portfolio<span class="brand-year"> / ${new Date().getFullYear()}</span></span></a>
       <nav class="desktop-nav" aria-label="Primary navigation">${navLinks()}</nav>
       <div class="header-actions">
         <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">${icon('sun', 19, 'theme-sun')}${icon('moon', 19, 'theme-moon')}</button>
@@ -79,14 +79,14 @@ app.innerHTML = `
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="availability-pill reveal"><span class="availability-dot"></span>${e(site.availability)}</div>
-          <p class="hero-overline reveal">Hello there <span aria-hidden="true">✳</span> I’m ${e(site.name)}</p>
+          <p class="hero-overline reveal"><img class="hero-avatar" src="${attr(safeLink(site.photo))}" alt="" width="56" height="56" aria-hidden="true"/>Hello there <span aria-hidden="true">✳</span> I’m ${e(site.name)}</p>
           <h1 id="hero-title" class="reveal">Building digital<br/><span class="italic-word">experiences</span> that<br/><span class="gradient-word">feel human<span class="hero-period">.</span></span></h1>
           <p class="hero-role reveal">${e(site.role)}</p>
           <p class="hero-tagline reveal">${e(site.tagline)}</p>
-          <p class="hero-description reveal">${e(site.intro)} ${e(site.description)}</p>
+          <p class="hero-description reveal">${e(site.intro)} <span class="hero-description-extended">${e(site.description)}</span></p>
           <div class="hero-actions reveal">
             <a class="button button-primary" href="#projects">View Projects ${icon('arrowUpRight', 18)}</a>
-            <a class="button button-secondary" href="${attr(safeLink(site.resumePath))}" download>Download Resume ${icon('download', 18)}</a>
+            <a class="button button-secondary" href="${attr(safeLink(site.resumePath))}" target="_blank" rel="noopener noreferrer">View Resume ${icon('arrowUpRight', 18)}</a>
             <a class="button button-tertiary" href="#contact">Contact Me ${icon('arrow', 18)}</a>
           </div>
           <div class="hero-meta reveal"><span>${icon('pin', 17)} ${e(site.city)}, ${e(site.country)}</span><span class="hero-meta-line"></span><a href="#contact">Available for a conversation ${icon('arrow', 16)}</a></div>
@@ -105,6 +105,18 @@ app.innerHTML = `
       <div class="container hero-bottom"><div class="hero-scroll"><span class="scroll-line"></span> Scroll to explore</div>${socialLinks('hero-social')}<span class="hero-coordinate">MADE IN CAMARINES NORTE</span></div>
     </section>
 
+    <section class="quick-explore" aria-labelledby="quick-explore-title">
+      <div class="container">
+        <div class="quick-explore-heading"><p class="eyebrow"><span class="eyebrow-bar"></span>Explore</p><h2 id="quick-explore-title">Explore my portfolio</h2></div>
+        <nav class="quick-explore-grid" aria-label="Explore portfolio sections">
+          <a class="quick-explore-card" href="#projects">${icon('code', 21)}<span><strong>Projects</strong><small>Explore my work</small></span>${icon('arrowUpRight', 17)}</a>
+          <a class="quick-explore-card" href="#skills">${icon('layers', 21)}<span><strong>Skills</strong><small>What I work with</small></span>${icon('arrowUpRight', 17)}</a>
+          <a class="quick-explore-card" href="#education">${icon('book', 21)}<span><strong>Background</strong><small>My journey</small></span>${icon('arrowUpRight', 17)}</a>
+          <a class="quick-explore-card" href="#contact">${icon('mail', 21)}<span><strong>Contact</strong><small>Let’s connect</small></span>${icon('arrowUpRight', 17)}</a>
+        </nav>
+      </div>
+    </section>
+
     <div class="divider-section" aria-hidden="true"><div class="container"><div class="divider-line"></div></div></div>
 
     <section class="section about-section" id="about" aria-labelledby="about-title">
@@ -112,36 +124,39 @@ app.innerHTML = `
         <div class="about-main">
           <p class="eyebrow reveal"><span class="eyebrow-bar"></span>01 <span class="slash">/</span> About me</p>
           <h2 class="about-title reveal" id="about-title">${e(about.headline)}</h2>
-          ${about.paragraphs.map((paragraph) => `<p class="about-paragraph reveal">${e(paragraph)}</p>`).join('')}
+          ${about.paragraphs.slice(0, 1).map((paragraph) => `<p class="about-paragraph reveal">${e(paragraph)}</p>`).join('')}
+          ${about.paragraphs.length > 1 ? `<details class="about-more reveal" open><summary aria-controls="about-extra-content" aria-expanded="true">Read more about me</summary><div id="about-extra-content">${about.paragraphs.slice(1).map((paragraph) => `<p class="about-paragraph">${e(paragraph)}</p>`).join('')}</div></details>` : ''}
           <a class="text-link reveal" href="#experience">More about my journey ${icon('arrowUpRight', 18)}</a>
         </div>
-        <div class="about-side reveal">
-          <div class="about-card-top">${icon('sparkles', 19)} BEYOND THE SCREEN <span>✳</span></div>
+        <details class="about-side about-details reveal" open>
+          <summary class="about-card-top" aria-controls="about-details-content" aria-expanded="true">${icon('sparkles', 19)} BEYOND THE SCREEN <span>✳</span></summary>
+          <div class="about-details-body" id="about-details-content">
           <h3>Things that keep<br/>me curious.</h3>
           <div class="interest-list">${about.interests.map((interest, index) => `<span class="interest"><span>${String(index + 1).padStart(2, '0')}</span>${e(interest)}</span>`).join('')}</div>
           <div class="about-facts">${about.facts.map((fact) => `<div><span>${e(fact.label)}</span><strong>${e(fact.value)}</strong></div>`).join('')}</div>
-        </div>
+          </div>
+        </details>
       </div>
     </section>
 
     <section class="section shaded-section" id="education" aria-labelledby="education-title">
       <div class="container">
         ${sectionHeading('02', 'Education', 'The foundation.', 'What I am learning, and where my journey began.')}
-        <div class="timeline">${education.length ? education.map((edu) => `<article class="timeline-item reveal"><div class="timeline-icon">${icon('book', 24)}</div><div class="timeline-main"><div class="timeline-top"><span class="period-label">${e(edu.period)}</span>${edu.location ? `<span class="small-location">${icon('pin', 14)} ${e(edu.location)}</span>` : ''}</div><h3>${e(edu.degree)}</h3><p class="item-organization">${e(edu.school)}</p>${edu.details ? `<p class="muted-text">${e(edu.details)}</p>` : ''}${edu.highlights?.length ? `<div class="chip-list">${edu.highlights.map((subject) => `<span class="chip">${e(subject)}</span>`).join('')}</div>` : ''}${edu.honors?.length ? `<h4 class="optional-list-heading">Honors & awards</h4><div class="chip-list">${edu.honors.map((honor) => `<span class="chip">${e(honor)}</span>`).join('')}</div>` : ''}</div></article>`).join('') : '<p class="muted-text">Education details will be added here.</p>'}</div>
+        <div class="timeline">${education.length ? education.map((edu, index) => `<details class="timeline-item education-item disclosure-card reveal" open><summary class="education-summary" aria-controls="education-content-${index}" aria-expanded="true"><span class="timeline-icon">${icon('book', 24)}</span><span class="education-summary-copy"><span class="period-label">${e(edu.period)}</span><strong>${e(edu.degree)}</strong><span class="item-organization">${e(edu.school)}</span></span><span class="disclosure-indicator" aria-hidden="true"></span></summary><div class="timeline-main" id="education-content-${index}">${edu.location ? `<p class="small-location">${icon('pin', 14)} ${e(edu.location)}</p>` : ''}${edu.details ? `<p class="muted-text">${e(edu.details)}</p>` : ''}${edu.highlights?.length ? `<div class="chip-list">${edu.highlights.map((subject) => `<span class="chip">${e(subject)}</span>`).join('')}</div>` : ''}${edu.honors?.length ? `<h4 class="optional-list-heading">Honors & awards</h4><div class="chip-list">${edu.honors.map((honor) => `<span class="chip">${e(honor)}</span>`).join('')}</div>` : ''}</div></details>`).join('') : '<p class="muted-text">Education details will be added here.</p>'}</div>
       </div>
     </section>
 
     <section class="section" id="experience" aria-labelledby="experience-title">
       <div class="container">
         ${sectionHeading('03', 'Experience', 'Learning through doing.', 'A mix of hands-on project work, collaboration and leadership.')}
-        <div class="experience-list">${experience.length ? experience.map((job, index) => `<article class="experience-item reveal"><div class="experience-index">${String(index + 1).padStart(2, '0')}</div><div class="experience-content"><div class="experience-kicker"><span>${e(job.type)}</span><span>${e(job.period)}</span></div><h3>${e(job.role)}</h3><p class="item-organization">${e(job.organization)}</p>${job.description ? `<p class="muted-text">${e(job.description)}</p>` : ''}${job.bullets?.length || job.achievements?.length ? `<ul>${[...(job.bullets || []), ...(job.achievements || [])].map((bullet) => `<li>${e(bullet)}</li>`).join('')}</ul>` : ''}</div>${icon('arrowUpRight', 22, 'experience-arrow')}</article>`).join('') : '<p class="muted-text">Experience and activities will be added here.</p>'}</div>
+        <div class="experience-list">${experience.length ? experience.map((job, index) => `<details class="experience-item disclosure-card reveal" open><summary class="experience-summary" aria-controls="experience-content-${index}" aria-expanded="true"><span class="experience-index">${String(index + 1).padStart(2, '0')}</span><span class="experience-summary-copy"><span class="experience-kicker"><span>${e(job.type)}</span><span>${e(job.period)}</span></span><strong>${e(job.role)}</strong><span class="item-organization">${e(job.organization)}</span></span><span class="disclosure-indicator" aria-hidden="true"></span></summary><div class="experience-content" id="experience-content-${index}">${job.description ? `<p class="muted-text">${e(job.description)}</p>` : ''}${job.bullets?.length || job.achievements?.length ? `<ul>${[...(job.bullets || []), ...(job.achievements || [])].map((bullet) => `<li>${e(bullet)}</li>`).join('')}</ul>` : ''}</div></details>`).join('') : '<p class="muted-text">Experience and activities will be added here.</p>'}</div>
       </div>
     </section>
 
     <section class="section shaded-section" id="skills" aria-labelledby="skills-title">
       <div class="container">
         ${sectionHeading('04', 'Toolkit', 'Where Ideas Meet Implementation.', 'My approach combines system conceptualization, thoughtful planning, and AI-assisted development. I focus on transforming ideas into functional digital solutions while continuously strengthening my technical understanding and problem-solving abilities.')}
-        <div class="skills-grid">${skills.map((group, index) => `<article class="skill-card reveal"><div class="skill-card-top"><span class="skill-icon">${icon(group.icon, 25)}</span><span class="skill-number">0${index + 1}</span></div><h3>${e(group.category)}</h3><div class="skill-tags">${group.items.map((item) => `<span${item.proficiency ? ` title="${attr(item.proficiency)}"` : ''}>${e(item.name)}</span>`).join('')}</div></article>`).join('')}</div>
+        <div class="skills-grid">${skills.map((group, index) => `<details class="skill-card reveal" open><summary class="skill-card-summary" aria-controls="skill-items-${index}" aria-expanded="true"><span class="skill-icon">${icon(group.icon, 25)}</span><h3>${e(group.category)}</h3><span class="skill-number">0${index + 1}</span><span class="disclosure-indicator" aria-hidden="true"></span></summary><div class="skill-tags" id="skill-items-${index}">${group.items.map((item) => `<span${item.proficiency ? ` title="${attr(item.proficiency)}"` : ''}>${e(item.name)}</span>`).join('')}</div></details>`).join('')}</div>
         <p class="skills-note reveal">I use AI as a development partner to accelerate implementation, while focusing on requirements, application workflows, iterative improvement, and functionality.</p>
       </div>
     </section>
@@ -153,12 +168,14 @@ app.innerHTML = `
             ${['All', ...new Set(projects.map((project) => project.category))].map((category) => `<button class="filter-btn ${category === 'All' ? 'is-selected' : ''}" type="button" data-filter="${attr(category)}" aria-pressed="${category === 'All'}">${e(category)}</button>`).join('')}
           </div>
         </div>
-        <div class="project-grid" id="project-grid">${projects.length ? projects.map((project, index) => `
+        ${projects.length > 1 ? '<button class="project-view-all" id="project-view-all" type="button" aria-expanded="false" aria-controls="project-grid">View all projects</button>' : ''}
+        ${projects.length > 1 ? '<p class="project-browse-hint">Swipe or scroll to browse projects.</p>' : ''}
+        <div class="project-grid" id="project-grid" role="region" aria-label="Project collection; horizontally scrollable on small screens" tabindex="0">${projects.length ? projects.map((project, index) => `
           <article class="project-card reveal" data-category="${attr(project.category)}">
             <button class="project-open" type="button" data-project="${attr(project.id)}" aria-label="View ${attr(project.title)} project details">
               <div class="project-image-wrap"><img loading="lazy" decoding="async" src="${attr(safeLink(project.image))}" alt="${attr(project.imageAlt)}" width="800" height="500"/><span class="project-image-arrow">${icon('arrowUpRight', 23)}</span></div>
               <div class="project-body"><div class="project-topline"><span>${String(index + 1).padStart(2, '0')} / ${e(project.category)}${project.featured ? ' · FEATURED' : ''}</span><span>${e(project.year)}</span></div>
-              <h3>${e(project.title)} ${icon('arrowUpRight', 20)}</h3><p>${e(project.summary)}</p><div class="project-chips">${project.tags.slice(0, 4).map((tag) => `<span>${e(tag)}</span>`).join('')}</div></div>
+              <h3>${e(project.title)} ${icon('arrowUpRight', 20)}</h3><p>${e(project.summary)}</p><div class="project-chips">${project.tags.slice(0, 4).map((tag) => `<span>${e(tag)}</span>`).join('')}</div><span class="project-details-label">View project details ${icon('arrowUpRight', 15)}</span></div>
             </button>
           </article>`).join('') : '<p class="muted-text">Projects will be added here soon.</p>'}</div>
         <div class="work-endnote reveal">Have a project in mind? <a href="#contact">Let’s create something together. ${icon('arrow', 17)}</a></div>
@@ -175,9 +192,11 @@ app.innerHTML = `
     <section class="section resume-section" id="resume" aria-labelledby="resume-title">
       <div class="container">
         ${sectionHeading('07', 'Résumé & CV', 'The details, on paper.', 'Explore a concise on-page CV or open and download the PDF versions.')}
-        <div class="resume-actions reveal"><a class="button button-primary" download href="${attr(safeLink(site.resumePath))}">Download résumé ${icon('download', 18)}</a><a class="button button-secondary" download href="${attr(safeLink(site.cvPath))}">Download full CV ${icon('download', 18)}</a></div>
+        <div class="resume-actions reveal"><a class="button button-primary" href="${attr(safeLink(site.resumePath))}" target="_blank" rel="noopener noreferrer">View résumé ${icon('arrowUpRight', 18)}</a><a class="button button-secondary" download href="${attr(safeLink(site.resumePath))}">Download résumé ${icon('download', 18)}</a><a class="button button-secondary" href="${attr(safeLink(site.cvPath))}" target="_blank" rel="noopener noreferrer">View full CV ${icon('arrowUpRight', 18)}</a><a class="button button-secondary" download href="${attr(safeLink(site.cvPath))}">Download CV ${icon('download', 18)}</a></div>
         <div class="resume-grid">
-          <article class="cv-panel reveal" aria-label="On-page curriculum vitae">
+          <details class="cv-panel reveal" aria-label="On-page curriculum vitae" open>
+            <summary class="cv-panel-summary" aria-controls="cv-panel-content" aria-expanded="true"><span>On-page CV</span><span class="disclosure-indicator" aria-hidden="true"></span></summary>
+              <div class="cv-panel-content" id="cv-panel-content">
             <div class="cv-panel-head"><span>CURRICULUM VITAE</span>${icon('document', 23)}</div>
             <h3>${e(site.name)}</h3><p class="cv-job">${e(site.role)}</p>
             <p class="cv-contact-line">${e(site.city)}, ${e(site.country)} <span>·</span> ${e(site.email)}</p>
@@ -188,8 +207,9 @@ app.innerHTML = `
             <h4>Selected projects</h4><p>${projects.map((item) => e(item.title)).join(' · ')}</p>
             ${certifications.length ? `<h4>Certifications</h4><p>${certifications.map((item) => e(item.title)).join(' · ')}</p>` : ''}
             <h4>More about me</h4><ul class="cv-extra">${cv.additional.map((item) => `<li>${e(item)}</li>`).join('')}</ul>
-          </article>
-          <div class="pdf-panel reveal"><div class="pdf-head"><span>${icon('document', 18)} PDF preview</span><div class="pdf-switch" role="group" aria-label="Choose PDF preview"><button type="button" class="pdf-tab is-active" aria-pressed="true" data-pdf="resume">Résumé</button><button type="button" class="pdf-tab" aria-pressed="false" data-pdf="cv">Full CV</button></div></div><iframe class="pdf-viewer" id="pdf-viewer" title="Résumé PDF preview" loading="lazy" src="${attr(safeLink(site.resumePath))}#toolbar=0"></iframe><div class="pdf-footer"><span>PDF preview may vary by browser</span><a href="${attr(safeLink(site.resumePath))}" target="_blank" rel="noopener noreferrer" id="pdf-open">Open PDF in new tab ${icon('arrowUpRight', 16)}</a></div></div>
+            </div>
+          </details>
+          <div class="pdf-panel reveal"><div class="pdf-head"><span>${icon('document', 18)} PDF preview</span><div class="pdf-switch" role="group" aria-label="Choose PDF preview"><button type="button" class="pdf-tab is-active" aria-pressed="true" data-pdf="resume">Résumé</button><button type="button" class="pdf-tab" aria-pressed="false" data-pdf="cv">Full CV</button></div></div><iframe class="pdf-viewer" id="pdf-viewer" title="Résumé PDF preview" loading="lazy" data-src="${attr(safeLink(site.resumePath))}#toolbar=0"></iframe><div class="pdf-footer"><span>PDF preview may vary by browser</span><a href="${attr(safeLink(site.resumePath))}" target="_blank" rel="noopener noreferrer" id="pdf-open">Open PDF in new tab ${icon('arrowUpRight', 16)}</a></div></div>
         </div>
       </div>
     </section>
@@ -223,9 +243,16 @@ app.innerHTML = `
     </section>
   </main>
 
-  <footer class="footer"><div class="container"><div class="footer-top"><div><a class="footer-logo" href="#top">${e(site.initials)}<span>.</span></a><p>${e(site.tagline)}</p></div><div class="footer-right"><p>Let's stay connected.</p>${socialLinks('footer-social')}</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${e(site.name)}. All rights reserved.</span><div><a href="#about">About</a><a href="#projects">Work</a><a href="#contact">Contact</a></div><a href="#top" class="back-to-top">Back to top ${icon('arrowUp', 16)}</a></div></div></footer>
+  <nav class="mobile-dock" aria-label="Quick navigation">
+    <a class="dock-link nav-link" href="#projects" data-section="projects">${icon('code', 19)}<span>Projects</span></a>
+    <a class="dock-link nav-link" href="#skills" data-section="skills">${icon('layers', 19)}<span>Skills</span></a>
+    <a class="dock-link nav-link" href="#resume" data-section="resume">${icon('document', 19)}<span>Resume</span></a>
+    <a class="dock-link nav-link" href="#contact" data-section="contact">${icon('mail', 19)}<span>Contact</span></a>
+  </nav>
 
-  <dialog id="project-dialog" class="project-dialog" aria-labelledby="modal-title"><div id="project-dialog-body"></div></dialog>
+  <footer class="footer"><div class="container"><div class="footer-top"><div><a class="footer-logo" href="#main">${e(site.initials)}<span>.</span></a><p>${e(site.tagline)}</p></div><div class="footer-right"><p>Let's stay connected.</p>${socialLinks('footer-social')}</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${e(site.name)}. All rights reserved.</span><div><a href="#about">About</a><a href="#projects">Work</a><a href="#contact">Contact</a></div><a href="#main" class="back-to-top">Back to top ${icon('arrowUp', 16)}</a></div></div></footer>
+
+  <dialog id="project-dialog" class="project-dialog" aria-labelledby="modal-title"><button type="button" class="modal-close modal-close-fixed" data-close-dialog aria-label="Close project details">${icon('x', 23)}</button><div id="project-dialog-body"></div></dialog>
 `;
 
 // Update SEO metadata for client-side navigation and local preview. The zero-
@@ -266,6 +293,43 @@ function setTheme(value) {
 }
 setTheme(document.documentElement.dataset.theme);
 themeToggle.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
+
+// Native disclosures remain usable with touch, keyboard, and assistive technology.
+const disclosureQuery = matchMedia('(max-width: 740px)');
+const responsiveDisclosures = document.querySelectorAll('.skill-card, .about-more, .about-details, .education-item, .experience-item, .cv-panel');
+function syncDisclosureLayout() {
+  responsiveDisclosures.forEach((disclosure) => {
+    const summary = disclosure.querySelector('summary');
+    const shouldOpen = !disclosureQuery.matches || (disclosure.classList.contains('skill-card') && disclosure === document.querySelector('.skill-card'));
+    disclosure.open = shouldOpen;
+    if (summary?.hasAttribute('aria-expanded')) summary.setAttribute('aria-expanded', String(shouldOpen));
+  });
+}
+responsiveDisclosures.forEach((disclosure) => {
+  const summary = disclosure.querySelector('summary');
+  if (!summary?.hasAttribute('aria-expanded')) return;
+  disclosure.addEventListener('toggle', () => summary.setAttribute('aria-expanded', String(disclosure.open)));
+});
+syncDisclosureLayout();
+disclosureQuery.addEventListener('change', syncDisclosureLayout);
+
+// Keep the dock out of the opening dashboard; reveal it for long-form browsing.
+const quickExplore = document.querySelector('.quick-explore');
+const mobileDock = document.querySelector('.mobile-dock');
+let dockFrame = 0;
+function syncMobileDock() {
+  const visible = disclosureQuery.matches && window.scrollY >= quickExplore.offsetTop + quickExplore.offsetHeight;
+  document.body.classList.toggle('dock-active', visible);
+  mobileDock.hidden = !visible || document.body.classList.contains('form-is-focused');
+}
+window.addEventListener('scroll', () => {
+  if (!dockFrame) dockFrame = requestAnimationFrame(() => {
+    dockFrame = 0;
+    syncMobileDock();
+  });
+}, { passive: true });
+window.addEventListener('resize', syncMobileDock);
+syncMobileDock();
 
 // Mobile menu and escape / resize handling.
 const menuToggle = document.querySelector('#menu-toggle');
@@ -310,6 +374,23 @@ if ('IntersectionObserver' in window) {
   navTargets.forEach((section) => observer.observe(section));
 }
 
+// Keep the mobile dock out of the way while the on-screen keyboard is active.
+const contactForm = document.querySelector('#contact-form');
+contactForm.addEventListener('focusin', (event) => {
+  if (event.target.matches('input:not([type="hidden"]), textarea')) {
+    document.body.classList.add('form-is-focused');
+    mobileDock.hidden = true;
+  }
+});
+contactForm.addEventListener('focusout', () => {
+  requestAnimationFrame(() => {
+    if (!contactForm.contains(document.activeElement) || !document.activeElement.matches('input:not([type="hidden"]), textarea')) {
+      document.body.classList.remove('form-is-focused');
+      mobileDock.hidden = !document.body.classList.contains('dock-active');
+    }
+  });
+});
+
 // Progressive reveal animations; always honor reduced motion settings.
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const reveals = document.querySelectorAll('.reveal');
@@ -337,6 +418,14 @@ document.querySelectorAll('.filter-btn').forEach((button) => button.addEventList
     card.hidden = selected !== 'All' && card.dataset.category !== selected;
   });
 }));
+const projectGrid = document.querySelector('#project-grid');
+const projectViewAll = document.querySelector('#project-view-all');
+projectViewAll?.addEventListener('click', () => {
+  const expanded = projectViewAll.getAttribute('aria-expanded') !== 'true';
+  projectViewAll.setAttribute('aria-expanded', String(expanded));
+  projectViewAll.textContent = expanded ? 'Back to project carousel' : 'View all projects';
+  projectGrid.classList.toggle('is-expanded', expanded);
+});
 
 // Native dialog gives keyboard focus management and Escape-to-close for free.
 const dialog = document.querySelector('#project-dialog');
@@ -352,7 +441,7 @@ function openProject(id, updateUrl = true) {
   currentProject = id;
   projectTrigger = document.activeElement;
   dialogBody.innerHTML = `
-    <div class="modal-cover"><img src="${attr(safeLink(project.image))}" alt="${attr(project.imageAlt)}" width="800" height="500" /><button type="button" class="modal-close" data-close-dialog aria-label="Close project details">${icon('x', 23)}</button></div>
+    <div class="modal-cover"><img src="${attr(safeLink(project.image))}" alt="${attr(project.imageAlt)}" width="800" height="500" /></div>
     <div class="modal-copy"><div class="modal-kicker">${e(project.category)} <span>·</span> ${e(project.year)}${project.status ? ` <span>·</span> ${e(project.status)}` : ''}</div><h2 id="modal-title">${e(project.title)}</h2><p class="modal-subtitle">${e(project.subtitle)}</p><p class="modal-description">${e(project.detail)}</p>${renderProjectList('My contributions', project.contribution)}${renderProjectList('Features', project.features)}${renderProjectList('Challenges', project.challenges)}${project.tags?.length ? `<div class="project-chips">${project.tags.map((tag) => `<span>${e(tag)}</span>`).join('')}</div>` : ''}${project.screenshots?.length ? `<h3>Project screenshots</h3><div class="modal-gallery">${project.screenshots.map((image, index) => `<img src="${attr(safeLink(image))}" alt="${attr(`${project.title} screenshot ${index + 1}`)}" loading="lazy" decoding="async"/>`).join('')}</div>` : ''}<div class="modal-actions">${safeLink(project.demo) ? `<a class="button button-primary" href="${attr(safeLink(project.demo))}" target="_blank" rel="noopener noreferrer">Live project ${icon('external', 17)}</a>` : ''}${safeLink(project.github) ? `<a class="button button-secondary" href="${attr(safeLink(project.github))}" target="_blank" rel="noopener noreferrer">View code ${icon('github', 17)}</a>` : ''}${!safeLink(project.demo) && !safeLink(project.github) ? '<span class="modal-link-note">Live and source links will appear when added to the content file.</span>' : ''}</div></div>`;
   if (!dialog.open) dialog.showModal();
   if (updateUrl) {
@@ -385,6 +474,21 @@ window.addEventListener('popstate', () => {
 const initialProject = new URL(window.location.href).searchParams.get('project');
 if (initialProject) openProject(initialProject, false);
 
+// Defer loading the embedded PDF viewer on small screens; direct PDF links remain available.
+const pdfViewer = document.querySelector('#pdf-viewer');
+const pdfQuery = matchMedia('(max-width: 740px)');
+function syncPdfViewer() {
+  const path = pdfViewer.dataset.path || pdfViewer.dataset.src;
+  if (pdfQuery.matches) {
+    pdfViewer.removeAttribute('src');
+    return;
+  }
+  if (path && pdfViewer.getAttribute('src') !== path) pdfViewer.src = path;
+}
+pdfViewer.dataset.path = pdfViewer.dataset.src;
+syncPdfViewer();
+pdfQuery.addEventListener('change', syncPdfViewer);
+
 // Embedded PDF switching, with download/open links kept in sync.
 document.querySelectorAll('[data-pdf]').forEach((button) => button.addEventListener('click', () => {
   const type = button.dataset.pdf;
@@ -395,7 +499,8 @@ document.querySelectorAll('[data-pdf]').forEach((button) => button.addEventListe
     tab.setAttribute('aria-pressed', String(active));
   });
   const viewer = document.querySelector('#pdf-viewer');
-  viewer.src = `${safeLink(path)}#toolbar=0`;
+  viewer.dataset.path = `${safeLink(path)}#toolbar=0`;
+  if (!pdfQuery.matches) viewer.src = viewer.dataset.path;
   viewer.title = `${type === 'cv' ? 'CV' : 'Résumé'} PDF preview`;
   document.querySelector('#pdf-open').href = safeLink(path);
 }));
