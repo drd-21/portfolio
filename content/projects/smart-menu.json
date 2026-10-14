@@ -1,0 +1,32 @@
+{
+  "id": "smart-menu",
+  "title": "Smart Digital Menu",
+  "subtitle": "Scan. Browse. Update.",
+  "category": "Web",
+  "year": "Concept",
+  "badge": "Concept",
+  "image": "./assets/projects/menu.svg",
+  "imageAlt": "Illustrated QR and NFC-powered digital cafe menu",
+  "summary": "A QR / NFC-accessible restaurant menu concept with a simple, editable management experience.",
+  "detail": "A mobile-friendly online menu concept that guests can reach via a QR code, an NFC tag or a direct link, with admin-managed prices, categories, availability and photos. Mark the project as live only when deployed and verified.",
+  "contribution": [
+    "Mobile-first menu interface",
+    "Content management planning",
+    "QR / NFC entry points"
+  ],
+  "tags": [
+    "Web",
+    "Responsive UI",
+    "QR / NFC",
+    "CMS"
+  ],
+  "demo": "",
+  "github": "",
+  "status": "",
+  "features": [],
+  "challenges": [],
+  "screenshots": [],
+  "displayOrder": 4,
+  "featured": false,
+  "published": true
+}

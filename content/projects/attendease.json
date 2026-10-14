@@ -1,0 +1,32 @@
+{
+  "id": "attendease",
+  "title": "AttendEase",
+  "subtitle": "Mobile attendance made practical.",
+  "category": "Mobile",
+  "year": "Academic project",
+  "badge": "Featured",
+  "image": "./assets/projects/attendease.svg",
+  "imageAlt": "Illustrated mobile NFC attendance interface",
+  "summary": "An NFC-based student attendance concept with mobile check-ins, roles, enrollment workflows and reporting features.",
+  "detail": "A mobile-first attendance project exploring phone-to-phone NFC communication, Android host card emulation, instructor workflows, student enrollment, session management and Supabase-backed data. Replace this description with the exact features you have completed and tested.",
+  "contribution": [
+    "Android and mobile experience",
+    "NFC / HCE experiments",
+    "Database-backed workflows"
+  ],
+  "tags": [
+    "Android",
+    "Java",
+    "NFC / HCE",
+    "Supabase"
+  ],
+  "demo": "",
+  "github": "",
+  "status": "",
+  "features": [],
+  "challenges": [],
+  "screenshots": [],
+  "displayOrder": 1,
+  "featured": true,
+  "published": true
+}

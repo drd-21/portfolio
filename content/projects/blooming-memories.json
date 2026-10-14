@@ -1,0 +1,32 @@
+{
+  "id": "blooming-memories",
+  "title": "Blooming Memories",
+  "subtitle": "A personal experience, designed with care.",
+  "category": "Web",
+  "year": "Personal project",
+  "badge": "Personal",
+  "image": "./assets/projects/blooming.svg",
+  "imageAlt": "Illustrated pastel website with planner cards and flowers",
+  "summary": "An interactive personal website centered on shared plans, customized experiences and memorable moments.",
+  "detail": "A responsive web experience with editable activities, a date/time planner, shareable links and an email invitation flow. Verify which features are currently live before making public claims.",
+  "contribution": [
+    "Interactive page layouts",
+    "Planning and share flows",
+    "Email integration"
+  ],
+  "tags": [
+    "React",
+    "Vite",
+    "JavaScript",
+    "EmailJS"
+  ],
+  "demo": "",
+  "github": "",
+  "status": "",
+  "features": [],
+  "challenges": [],
+  "screenshots": [],
+  "displayOrder": 2,
+  "featured": false,
+  "published": true
+}

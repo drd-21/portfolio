@@ -1,0 +1,126 @@
+[
+  {
+    "category": "Programming",
+    "icon": "code",
+    "items": [
+      {
+        "name": "JavaScript",
+        "proficiency": ""
+      },
+      {
+        "name": "Python",
+        "proficiency": ""
+      },
+      {
+        "name": "Java",
+        "proficiency": ""
+      },
+      {
+        "name": "Kotlin",
+        "proficiency": ""
+      },
+      {
+        "name": "SQL",
+        "proficiency": ""
+      },
+      {
+        "name": "HTML",
+        "proficiency": ""
+      },
+      {
+        "name": "CSS",
+        "proficiency": ""
+      }
+    ]
+  },
+  {
+    "category": "Frameworks & Platforms",
+    "icon": "layers",
+    "items": [
+      {
+        "name": "React",
+        "proficiency": ""
+      },
+      {
+        "name": "Vite",
+        "proficiency": ""
+      },
+      {
+        "name": "Express",
+        "proficiency": ""
+      },
+      {
+        "name": "Capacitor",
+        "proficiency": ""
+      },
+      {
+        "name": "Android",
+        "proficiency": ""
+      },
+      {
+        "name": "Supabase",
+        "proficiency": ""
+      }
+    ]
+  },
+  {
+    "category": "Tools & Workflow",
+    "icon": "terminal",
+    "items": [
+      {
+        "name": "Git & GitHub",
+        "proficiency": ""
+      },
+      {
+        "name": "Android Studio",
+        "proficiency": ""
+      },
+      {
+        "name": "VS Code",
+        "proficiency": ""
+      },
+      {
+        "name": "SQLite",
+        "proficiency": ""
+      },
+      {
+        "name": "PostgreSQL",
+        "proficiency": ""
+      },
+      {
+        "name": "3ds Max",
+        "proficiency": ""
+      }
+    ]
+  },
+  {
+    "category": "Design & People",
+    "icon": "pen",
+    "items": [
+      {
+        "name": "Responsive UI",
+        "proficiency": ""
+      },
+      {
+        "name": "UX Thinking",
+        "proficiency": ""
+      },
+      {
+        "name": "Prototyping",
+        "proficiency": ""
+      },
+      {
+        "name": "Collaboration",
+        "proficiency": ""
+      },
+      {
+        "name": "Problem Solving",
+        "proficiency": ""
+      },
+      {
+        "name": "Communication",
+        "proficiency": ""
+      }
+    ]
+  }
+]

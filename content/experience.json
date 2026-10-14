@@ -1,0 +1,27 @@
+[
+  {
+    "role": "Academic Software Developer",
+    "organization": "Coursework & personal projects",
+    "period": "Dates to confirm",
+    "type": "Projects",
+    "description": "Created and iterated on web, mobile and desktop solutions; explored authentication, database-backed features, responsive interfaces and end-user workflows.",
+    "bullets": [
+      "Prototyped practical software features",
+      "Worked across UI, application logic and data storage",
+      "Tested and improved real-world user flows"
+    ],
+    "achievements": []
+  },
+  {
+    "role": "Student Leadership & Volunteer Activities",
+    "organization": "Campus & NSTP activities",
+    "period": "Dates to confirm",
+    "type": "Leadership",
+    "description": "Participated in student leadership and coordinated activities with peers during academic and service-oriented events.",
+    "bullets": [
+      "Supported coordination and group communication",
+      "Helped organize collaborative tasks"
+    ],
+    "achievements": []
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "id": "sari-sari-pos",
+  "title": "Sari-Sari POS",
+  "subtitle": "Everyday retail, less friction.",
+  "category": "Systems",
+  "year": "Software project",
+  "badge": "Desktop",
+  "image": "./assets/projects/pos.svg",
+  "imageAlt": "Illustrated retail point of sale analytics dashboard",
+  "summary": "A point-of-sale desktop application concept for sales, inventory and small-store operations.",
+  "detail": "A small-business software project covering sales transactions, product management and inventory workflows. Use this case study to explain the real architecture, screenshots, measurable impact and testing.",
+  "contribution": [
+    "POS interface exploration",
+    "Inventory workflows",
+    "Data management"
+  ],
+  "tags": [
+    "Python",
+    "SQLite",
+    "Desktop UI"
+  ],
+  "demo": "",
+  "github": "",
+  "status": "",
+  "features": [],
+  "challenges": [],
+  "screenshots": [],
+  "displayOrder": 3,
+  "featured": false,
+  "published": true
+}

@@ -126,21 +126,21 @@ app.innerHTML = `
     <section class="section shaded-section" id="education" aria-labelledby="education-title">
       <div class="container">
         ${sectionHeading('02', 'Education', 'The foundation.', 'What I am learning, and where my journey began.')}
-        <div class="timeline">${education.map((edu) => `<article class="timeline-item reveal"><div class="timeline-icon">${icon('book', 24)}</div><div class="timeline-main"><div class="timeline-top"><span class="period-label">${e(edu.period)}</span><span class="small-location">${icon('pin', 14)} ${e(edu.location)}</span></div><h3>${e(edu.degree)}</h3><p class="item-organization">${e(edu.school)}</p><p class="muted-text">${e(edu.details)}</p><div class="chip-list">${edu.highlights.map((subject) => `<span class="chip">${e(subject)}</span>`).join('')}</div></div></article>`).join('')}</div>
+        <div class="timeline">${education.length ? education.map((edu) => `<article class="timeline-item reveal"><div class="timeline-icon">${icon('book', 24)}</div><div class="timeline-main"><div class="timeline-top"><span class="period-label">${e(edu.period)}</span>${edu.location ? `<span class="small-location">${icon('pin', 14)} ${e(edu.location)}</span>` : ''}</div><h3>${e(edu.degree)}</h3><p class="item-organization">${e(edu.school)}</p>${edu.details ? `<p class="muted-text">${e(edu.details)}</p>` : ''}${edu.highlights?.length ? `<div class="chip-list">${edu.highlights.map((subject) => `<span class="chip">${e(subject)}</span>`).join('')}</div>` : ''}${edu.honors?.length ? `<h4 class="optional-list-heading">Honors & awards</h4><div class="chip-list">${edu.honors.map((honor) => `<span class="chip">${e(honor)}</span>`).join('')}</div>` : ''}</div></article>`).join('') : '<p class="muted-text">Education details will be added here.</p>'}</div>
       </div>
     </section>
 
     <section class="section" id="experience" aria-labelledby="experience-title">
       <div class="container">
         ${sectionHeading('03', 'Experience', 'Learning through doing.', 'A mix of hands-on project work, collaboration and leadership.')}
-        <div class="experience-list">${experience.map((job, index) => `<article class="experience-item reveal"><div class="experience-index">${String(index + 1).padStart(2, '0')}</div><div class="experience-content"><div class="experience-kicker"><span>${e(job.type)}</span><span>${e(job.period)}</span></div><h3>${e(job.role)}</h3><p class="item-organization">${e(job.organization)}</p><p class="muted-text">${e(job.description)}</p><ul>${job.bullets.map((bullet) => `<li>${e(bullet)}</li>`).join('')}</ul></div>${icon('arrowUpRight', 22, 'experience-arrow')}</article>`).join('')}</div>
+        <div class="experience-list">${experience.length ? experience.map((job, index) => `<article class="experience-item reveal"><div class="experience-index">${String(index + 1).padStart(2, '0')}</div><div class="experience-content"><div class="experience-kicker"><span>${e(job.type)}</span><span>${e(job.period)}</span></div><h3>${e(job.role)}</h3><p class="item-organization">${e(job.organization)}</p>${job.description ? `<p class="muted-text">${e(job.description)}</p>` : ''}${job.bullets?.length || job.achievements?.length ? `<ul>${[...(job.bullets || []), ...(job.achievements || [])].map((bullet) => `<li>${e(bullet)}</li>`).join('')}</ul>` : ''}</div>${icon('arrowUpRight', 22, 'experience-arrow')}</article>`).join('') : '<p class="muted-text">Experience and activities will be added here.</p>'}</div>
       </div>
     </section>
 
     <section class="section shaded-section" id="skills" aria-labelledby="skills-title">
       <div class="container">
         ${sectionHeading('04', 'Toolkit', 'Tools of the trade.', 'Technologies and ways of thinking I use to bring ideas to life.')}
-        <div class="skills-grid">${skills.map((group, index) => `<article class="skill-card reveal"><div class="skill-card-top"><span class="skill-icon">${icon(group.icon, 25)}</span><span class="skill-number">0${index + 1}</span></div><h3>${e(group.category)}</h3><div class="skill-tags">${group.items.map((item) => `<span>${e(item)}</span>`).join('')}</div></article>`).join('')}</div>
+        <div class="skills-grid">${skills.map((group, index) => `<article class="skill-card reveal"><div class="skill-card-top"><span class="skill-icon">${icon(group.icon, 25)}</span><span class="skill-number">0${index + 1}</span></div><h3>${e(group.category)}</h3><div class="skill-tags">${group.items.map((item) => `<span${item.proficiency ? ` title="${attr(item.proficiency)}"` : ''}>${e(item.name)}</span>`).join('')}</div></article>`).join('')}</div>
         <p class="skills-note reveal">My toolkit continues to grow with every project. These are technologies I have worked with or explored—not claims of expert proficiency.</p>
       </div>
     </section>
@@ -152,14 +152,14 @@ app.innerHTML = `
             ${['All', ...new Set(projects.map((project) => project.category))].map((category) => `<button class="filter-btn ${category === 'All' ? 'is-selected' : ''}" type="button" data-filter="${attr(category)}" aria-pressed="${category === 'All'}">${e(category)}</button>`).join('')}
           </div>
         </div>
-        <div class="project-grid" id="project-grid">${projects.map((project, index) => `
+        <div class="project-grid" id="project-grid">${projects.length ? projects.map((project, index) => `
           <article class="project-card reveal" data-category="${attr(project.category)}">
             <button class="project-open" type="button" data-project="${attr(project.id)}" aria-label="View ${attr(project.title)} project details">
               <div class="project-image-wrap"><img loading="lazy" decoding="async" src="${attr(safeLink(project.image))}" alt="${attr(project.imageAlt)}" width="800" height="500"/><span class="project-image-arrow">${icon('arrowUpRight', 23)}</span></div>
-              <div class="project-body"><div class="project-topline"><span>${String(index + 1).padStart(2, '0')} / ${e(project.category)}</span><span>${e(project.year)}</span></div>
+              <div class="project-body"><div class="project-topline"><span>${String(index + 1).padStart(2, '0')} / ${e(project.category)}${project.featured ? ' · FEATURED' : ''}</span><span>${e(project.year)}</span></div>
               <h3>${e(project.title)} ${icon('arrowUpRight', 20)}</h3><p>${e(project.summary)}</p><div class="project-chips">${project.tags.slice(0, 4).map((tag) => `<span>${e(tag)}</span>`).join('')}</div></div>
             </button>
-          </article>`).join('')}</div>
+          </article>`).join('') : '<p class="muted-text">Projects will be added here soon.</p>'}</div>
         <div class="work-endnote reveal">Have a project in mind? <a href="#contact">Let’s create something together. ${icon('arrow', 17)}</a></div>
       </div>
     </section>
@@ -167,7 +167,7 @@ app.innerHTML = `
     <section class="section shaded-section" id="certifications" aria-labelledby="certifications-title">
       <div class="container">
         ${sectionHeading('06', 'Credentials', 'Always a student.', 'Certifications, recognitions and milestones along the way.')}
-        ${certifications.length ? `<div class="cert-grid">${certifications.map((cert) => `<article class="cert-card reveal"><div class="cert-icon">${icon('award', 25)}</div><div><span class="cert-date">${e(cert.date)}</span><h3>${e(cert.title)}</h3><p>${e(cert.issuer)}</p></div>${safeLink(cert.url) ? `<a class="cert-link" href="${attr(safeLink(cert.url))}" target="_blank" rel="noopener noreferrer" aria-label="Open credential for ${attr(cert.title)}">${icon('external', 19)}</a>` : ''}</article>`).join('')}</div>` : `<div class="empty-state reveal"><div class="empty-state-icon">${icon('award', 28)}</div><div><h3>Credentials are being added.</h3><p>Verified certifications and awards will appear here as they become available.</p></div><span class="empty-state-mark">✳</span></div>`}
+        ${certifications.length ? `<div class="cert-grid">${certifications.map((cert) => `<article class="cert-card reveal"><div class="cert-icon">${safeLink(cert.image) ? `<img src="${attr(safeLink(cert.image))}" alt="" loading="lazy" decoding="async"/>` : icon('award', 25)}</div><div><span class="cert-date">${e(cert.date)}</span><h3>${e(cert.title)}</h3><p>${e(cert.issuer)}</p>${cert.description ? `<p>${e(cert.description)}</p>` : ''}${cert.credentialId ? `<p class="cert-credential">Credential ID: ${e(cert.credentialId)}</p>` : ''}</div>${safeLink(cert.url) ? `<a class="cert-link" href="${attr(safeLink(cert.url))}" target="_blank" rel="noopener noreferrer" aria-label="Open credential for ${attr(cert.title)}">${icon('external', 19)}</a>` : ''}</article>`).join('')}</div>` : `<div class="empty-state reveal"><div class="empty-state-icon">${icon('award', 28)}</div><div><h3>Credentials are being added.</h3><p>Verified certifications and awards will appear here as they become available.</p></div><span class="empty-state-mark">✳</span></div>`}
       </div>
     </section>
 
@@ -183,7 +183,7 @@ app.innerHTML = `
             <div class="cv-rule"></div><h4>Profile</h4><p>${e(cv.objective)}</p>
             <h4>Education</h4>${education.map((item) => `<div class="cv-row"><strong>${e(item.degree)}</strong><span>${e(item.school)} · ${e(item.period)}</span></div>`).join('')}
             <h4>Experience</h4>${experience.map((item) => `<div class="cv-row"><strong>${e(item.role)}</strong><span>${e(item.organization)} · ${e(item.period)}</span></div>`).join('')}
-            <h4>Technical toolkit</h4><p>${skills.flatMap((item) => item.items).slice(0, 18).map(e).join(' · ')}</p>
+            <h4>Technical toolkit</h4><p>${skills.flatMap((group) => group.items).slice(0, 18).map((skill) => e(skill.name)).join(' · ')}</p>
             <h4>Selected projects</h4><p>${projects.map((item) => e(item.title)).join(' · ')}</p>
             ${certifications.length ? `<h4>Certifications</h4><p>${certifications.map((item) => e(item.title)).join(' · ')}</p>` : ''}
             <h4>More about me</h4><ul class="cv-extra">${cv.additional.map((item) => `<li>${e(item)}</li>`).join('')}</ul>
@@ -284,7 +284,13 @@ menuToggle.addEventListener('click', () => {
 });
 mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 window.addEventListener('resize', () => { if (window.innerWidth > 980) closeMenu(); });
-document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closeMenu();
+    const projectDialog = document.querySelector('#project-dialog');
+    if (projectDialog?.open) projectDialog.close();
+  }
+});
 
 // Active section tracking for all navigation links.
 const navTargets = document.querySelectorAll('main section[id]');
@@ -336,6 +342,9 @@ const dialog = document.querySelector('#project-dialog');
 const dialogBody = document.querySelector('#project-dialog-body');
 let currentProject = null;
 let projectTrigger = null;
+const renderProjectList = (heading, items) => items?.length
+  ? `<h3>${e(heading)}</h3><ul class="modal-contributions">${items.map((item) => `<li>${icon('check', 17)} ${e(item)}</li>`).join('')}</ul>`
+  : '';
 function openProject(id, updateUrl = true) {
   const project = projects.find((item) => item.id === id);
   if (!project) return;
@@ -343,7 +352,7 @@ function openProject(id, updateUrl = true) {
   projectTrigger = document.activeElement;
   dialogBody.innerHTML = `
     <div class="modal-cover"><img src="${attr(safeLink(project.image))}" alt="${attr(project.imageAlt)}" width="800" height="500" /><button type="button" class="modal-close" data-close-dialog aria-label="Close project details">${icon('x', 23)}</button></div>
-    <div class="modal-copy"><div class="modal-kicker">${e(project.category)} <span>·</span> ${e(project.year)}</div><h2 id="modal-title">${e(project.title)}</h2><p class="modal-subtitle">${e(project.subtitle)}</p><p class="modal-description">${e(project.detail)}</p><h3>What I explored</h3><ul class="modal-contributions">${project.contribution.map((item) => `<li>${icon('check', 17)} ${e(item)}</li>`).join('')}</ul><div class="project-chips">${project.tags.map((tag) => `<span>${e(tag)}</span>`).join('')}</div><div class="modal-actions">${safeLink(project.demo) ? `<a class="button button-primary" href="${attr(safeLink(project.demo))}" target="_blank" rel="noopener noreferrer">Live project ${icon('external', 17)}</a>` : ''}${safeLink(project.github) ? `<a class="button button-secondary" href="${attr(safeLink(project.github))}" target="_blank" rel="noopener noreferrer">View code ${icon('github', 17)}</a>` : ''}${!safeLink(project.demo) && !safeLink(project.github) ? '<span class="modal-link-note">Live and source links will appear when added to the content file.</span>' : ''}</div></div>`;
+    <div class="modal-copy"><div class="modal-kicker">${e(project.category)} <span>·</span> ${e(project.year)}${project.status ? ` <span>·</span> ${e(project.status)}` : ''}</div><h2 id="modal-title">${e(project.title)}</h2><p class="modal-subtitle">${e(project.subtitle)}</p><p class="modal-description">${e(project.detail)}</p>${renderProjectList('My contributions', project.contribution)}${renderProjectList('Features', project.features)}${renderProjectList('Challenges', project.challenges)}${project.tags?.length ? `<div class="project-chips">${project.tags.map((tag) => `<span>${e(tag)}</span>`).join('')}</div>` : ''}${project.screenshots?.length ? `<h3>Project screenshots</h3><div class="modal-gallery">${project.screenshots.map((image, index) => `<img src="${attr(safeLink(image))}" alt="${attr(`${project.title} screenshot ${index + 1}`)}" loading="lazy" decoding="async"/>`).join('')}</div>` : ''}<div class="modal-actions">${safeLink(project.demo) ? `<a class="button button-primary" href="${attr(safeLink(project.demo))}" target="_blank" rel="noopener noreferrer">Live project ${icon('external', 17)}</a>` : ''}${safeLink(project.github) ? `<a class="button button-secondary" href="${attr(safeLink(project.github))}" target="_blank" rel="noopener noreferrer">View code ${icon('github', 17)}</a>` : ''}${!safeLink(project.demo) && !safeLink(project.github) ? '<span class="modal-link-note">Live and source links will appear when added to the content file.</span>' : ''}</div></div>`;
   if (!dialog.open) dialog.showModal();
   if (updateUrl) {
     const url = new URL(window.location.href);

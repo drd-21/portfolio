@@ -1,0 +1,29 @@
+{
+  "eyebrow": "01 / About",
+  "headline": "A curious mind, a builder at heart.",
+  "paragraphs": [
+    "I study Information Technology at Camarines Norte State College, where I explore how software can improve everyday experiences — from attendance systems to small-business tools.",
+    "I like work that brings together practical engineering, considered interfaces, and a willingness to learn. Outside the screen, I enjoy motorcycle rides, exploring new places, and discovering good coffee."
+  ],
+  "interests": [
+    "Web & mobile experiences",
+    "Human-centered design",
+    "Exploring new places",
+    "Motorcycle journeys",
+    "Coffee & creativity"
+  ],
+  "facts": [
+    {
+      "label": "Based in",
+      "value": "Camarines Norte, PH"
+    },
+    {
+      "label": "Currently",
+      "value": "Studying BS Information Technology"
+    },
+    {
+      "label": "Mindset",
+      "value": "Always learning, always building"
+    }
+  ]
+}

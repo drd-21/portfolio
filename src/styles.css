@@ -177,6 +177,7 @@ svg { flex: none; }
 .timeline h3, .experience-item h3 { font-size: clamp(20px, 2.6vw, 28px); letter-spacing: -.8px; margin: 0 0 5px; line-height: 1.3; }
 .item-organization { color: var(--ink-soft); font-size: 14px; margin: 0 0 15px; }
 .timeline .muted-text { margin: 0 0 20px; font-size: 14px; }
+.optional-list-heading { margin: 18px 0 9px; font-size: 12px; color: var(--ink-soft); }
 .chip-list, .project-chips { display: flex; gap: 8px; flex-wrap: wrap; }
 .chip { display: inline-block; border: 1px solid var(--line); border-radius: 30px; padding: 6px 12px; color: var(--ink-soft); font-size: 11px; font-weight: 660; }
 .experience-list { border-top: 1px solid var(--line); }
@@ -234,6 +235,8 @@ svg { flex: none; }
 .cert-date { font-size: 11px; font-weight: 700; color: var(--accent-dark); }
 .cert-card h3 { margin: 8px 0 2px; font-size: 18px; }
 .cert-card p { margin: 0; color: var(--ink-muted); font-size: 13px; }
+.cert-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.cert-card .cert-credential { margin-top: 7px; font-size: 11px; overflow-wrap: anywhere; }
 .cert-link { color: var(--ink-muted); }.cert-link:hover { color: var(--accent); }
 .empty-state { border: 1px dashed var(--line); padding: 35px; border-radius: 16px; display: flex; align-items: center; gap: 22px; }
 .empty-state h3 { font-size: 19px; margin: 0 0 3px; }
@@ -337,6 +340,8 @@ a.contact-method:hover strong { color: var(--accent); }
 .modal-contributions .icon { color: var(--accent-dark); }
 .modal-actions { margin-top: 25px; display: flex; gap: 12px; flex-wrap: wrap; }
 .modal-link-note { color: var(--ink-muted); font-size: 12px; }
+.modal-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.modal-gallery img { width: 100%; max-height: 240px; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid var(--line); border-radius: 10px; }
 
 /* Reveal progressively; content is never hidden when JS/motion is unavailable. */
 .motion-ready .reveal { opacity: 0; transform: translateY(21px); transition: opacity .64s ease, transform .64s cubic-bezier(.22,.61,.36,1); }

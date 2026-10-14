@@ -5,10 +5,14 @@
   "description": "Dependency-free, content-driven personal portfolio.",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/generate-data.mjs",
     "dev": "node scripts/serve.mjs",
+    "prebuild": "node scripts/generate-data.mjs",
     "build": "node scripts/build.mjs",
     "preview": "node scripts/serve.mjs dist 4173",
-    "check": "node --check src/main.js && node --check src/data.js && node --check scripts/build.mjs",
+    "precheck": "node scripts/generate-data.mjs",
+    "check": "node --check src/main.js && node --check src/data.js && node --check scripts/generate-data.mjs && node --check scripts/build.mjs",
+    "pretest": "npm run build",
     "test": "node scripts/test.mjs"
   },
   "engines": {
